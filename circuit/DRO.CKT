@@ -1,0 +1,106 @@
+* Copyright 1997 by Kiavash
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*     https://www.apache.org/licenses/LICENSE-2.0
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+
+
+WB:0.3MM
+WL:2.31MM
+
+*ByPass information
+CBY:10PF
+LBY:0.478NH
+
+BLK
+* Gate Circuit
+  OST 1 W=WL P=4.9MM MSUB
+  TEE 1 2 3 W1=WL W2=WL W3=WB MSUB
+
+* RFC circuit
+  VIA 31 D=1MM MSUB
+  TRL 31 32 W=2MM P=2MM MSUB
+  SRX 32 33 R=0 L=LBY C=CBY
+  TRL 33 34 W=1MM P=0.5MM MSUB
+  OST 34 W=0.5MM P=5.29MM MSUB
+  STEP 34 35 W1=1MM W2=0.3MM MSUB
+  TRL 35 3 W=0.3MM P=7MM MSUB
+
+
+  TRL 2 41 W=WL P=2.46MM MSUB
+  STEP 41 42 W1=WL W2=0.51MM MSUB
+  TRL 42 4 W=0.51MM P=2MM MSUB
+
+  TWO 4 5 6 NE71083
+
+* Source Circuit
+  VIA 61 D=1MM MSUB
+  TRL 61 62 W=WL P=4.45MM MSUB
+  STEP 62 63 W1=WL W2=0.51MM MSUB
+  TRL 63 6 W=0.51MM P=2MM MSUB
+
+* Dran Circuit
+  TRL 5 71 W=0.51MM P=2MM MSUB
+  STEP 71 72 W1=0.51MM W2=2.31MM MSUB
+
+  TRL 72 73 W=WL P=5.88MM MSUB
+  TEE 73 74 9 W1=WL W2=WL W3=WB MSUB
+ 
+* RFC circuit
+  VIA 91 D=1MM MSUB
+  TRL 91 92 W=2MM P=2MM MSUB
+  SRX 92 93 R=0 L=LBY C=CBY
+  TRL 93 94 W=1MM P=0.5MM MSUB
+  OST 94 W=0.5MM P=5.29MM MSUB
+  STEP 94 95 W1=1MM W2=0.3MM MSUB
+  TRL 95 9 W=0.3MM P=7MM MSUB
+
+  DRMS 74 10 D=5.9MM HD=2.38MM ER=39 S=2.5MM HT=0.88MM W=WL L=10.6MM BSF MSUB
+  TEE 10 11 12 W1=WL W2=WL W3=WL MSUB
+  OST 12 W=WL P=11.54MM MSUB
+  TRL 11 13 W=WL P=5.42MM MSUB
+  SRX 13 14 R=0 L=LBY C=CBY          ;Chip cap for coupling
+
+  OSC:1POR 14
+
+END
+
+FREQ
+  9.99839973449707GHz
+  STEP 2GHz 18GHz 200MHz
+* STEP 9.99GHz 10.01GHz 50KHz
+END
+
+OUT
+  PRI OSC S
+END
+
+OPT
+  OSC
+     F=9.99839973449707GHz
+       MS11 W=-1
+END
+
+ 
+DATA
+
+  MSUB : MS ER=2.33 H=0.031in MET1=CU 17.5um
+  
+ NE71083: S   ;Data for NE71083 GaAs MESFET
+
+  2GHZ   .95   -26     3.54  161    .04   79     .59   -13
+  4GHZ   .89   -50     3.1   141    .06   66     .58   -24
+  6GHZ   .82   -70     2.83  126    .08   56     .54   -33
+  8GHZ   .78   -80     2.49  114    .09   51     .5    -42
+  10GHZ  .73  -102     2.15  104    .1    48     .47   -48
+  12GHZ  .71  -114     1.95   93    .1    43     .45   -55
+  14GHZ  .71  -122     1.93   90    .11   44     .47   -62
+  16GHZ  .67  -128     1.64   76    .11   43     .49   -64
+  18GHZ  .66  -140     1.47   63    .11   40     .52   -70
+
+END
